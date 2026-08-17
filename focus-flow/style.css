@@ -259,6 +259,17 @@ body {
 .task-form input:focus { border-color: var(--accent); }
 .task-form input::placeholder { color: var(--text-dim); }
 
+.task-form input.shake {
+  animation: shake 0.3s ease;
+  border-color: var(--danger);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
 .task-add-btn {
   border: none;
   border-radius: 10px;

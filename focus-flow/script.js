@@ -193,7 +193,12 @@
   // --- Tasks ---
   function addTask(text) {
     const trimmed = text.trim();
-    if (!trimmed) return;
+    if (!trimmed) {
+      els.taskInput.classList.remove('shake');
+      void els.taskInput.offsetWidth;
+      els.taskInput.classList.add('shake');
+      return;
+    }
     state.tasks.push({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), text: trimmed, done: false, pomodoros: 0 });
     if (!state.activeTaskId) {
       const t = state.tasks[state.tasks.length - 1];
