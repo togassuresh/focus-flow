@@ -14,7 +14,22 @@
     sessionCount: 1,
     tasks: [], // { id, text, done, pomodoros }
     activeTaskId: null,
+    dailyDate: todayKey(),
+    dailyCount: 0,
   });
+
+  function todayKey() {
+    const d = new Date();
+    return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+  }
+
+  function recordDailyCompletion() {
+    if (state.dailyDate !== todayKey()) {
+      state.dailyDate = todayKey();
+      state.dailyCount = 0;
+    }
+    state.dailyCount += 1;
+  }
 
   let tickHandle = null;
 
@@ -121,6 +136,7 @@
     pause();
     playChime();
     if (state.mode === 'focus') {
+      recordDailyCompletion();
       if (state.activeTaskId) {
         const t = state.tasks.find(t => t.id === state.activeTaskId);
         if (t) t.pomodoros = (t.pomodoros || 0) + 1;
