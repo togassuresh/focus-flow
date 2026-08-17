@@ -292,6 +292,14 @@ body {
 .task-add-btn:hover { opacity: 0.9; }
 .task-add-btn:active { transform: scale(0.96); }
 
+.char-counter {
+  display: block;
+  text-align: right;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: -6px;
+}
+
 .task-list {
   list-style: none;
   margin: 0;

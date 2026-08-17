@@ -50,6 +50,7 @@
     dailyStat: document.getElementById('dailyStat'),
     clearDoneBtn: document.getElementById('clearDoneBtn'),
     muteBtn: document.getElementById('muteBtn'),
+    charCounter: document.getElementById('charCounter'),
   };
 
   els.ring.style.strokeDasharray = String(RING_CIRCUMFERENCE);
@@ -341,6 +342,11 @@
     e.preventDefault();
     addTask(els.taskInput.value);
     els.taskInput.value = '';
+    els.charCounter.textContent = '0/120';
+  });
+
+  els.taskInput.addEventListener('input', () => {
+    els.charCounter.textContent = `${els.taskInput.value.length}/120`;
   });
 
   document.addEventListener('keydown', (e) => {
@@ -350,6 +356,7 @@
         e.preventDefault();
         addTask(els.taskInput.value);
         els.taskInput.value = '';
+        els.charCounter.textContent = '0/120';
       }
       return;
     }
