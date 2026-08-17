@@ -313,6 +313,8 @@
       const checkbox = document.createElement('button');
       checkbox.className = 'task-checkbox' + (t.done ? ' checked' : '');
       checkbox.type = 'button';
+      checkbox.setAttribute('role', 'checkbox');
+      checkbox.setAttribute('aria-checked', String(t.done));
       checkbox.setAttribute('aria-label', 'Toggle task done');
       checkbox.addEventListener('click', () => toggleTask(t.id));
 
