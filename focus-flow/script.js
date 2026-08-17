@@ -16,6 +16,7 @@
     activeTaskId: null,
     dailyDate: todayKey(),
     dailyCount: 0,
+    muted: false,
   });
 
   function todayKey() {
@@ -48,6 +49,7 @@
     emptyState: document.getElementById('emptyState'),
     dailyStat: document.getElementById('dailyStat'),
     clearDoneBtn: document.getElementById('clearDoneBtn'),
+    muteBtn: document.getElementById('muteBtn'),
   };
 
   els.ring.style.strokeDasharray = String(RING_CIRCUMFERENCE);
@@ -118,7 +120,15 @@
     }
   }
 
+  function toggleMute() {
+    state.muted = !state.muted;
+    els.muteBtn.textContent = state.muted ? '🔇' : '🔊';
+    els.muteBtn.title = state.muted ? 'Unmute chime' : 'Mute chime';
+    save();
+  }
+
   function playChime() {
+    if (state.muted) return;
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const now = ctx.currentTime;
@@ -285,6 +295,7 @@
   });
 
   els.clearDoneBtn.addEventListener('click', clearCompleted);
+  els.muteBtn.addEventListener('click', toggleMute);
   els.startPauseBtn.addEventListener('click', toggleStartPause);
   els.resetBtn.addEventListener('click', reset);
   els.skipBtn.addEventListener('click', skip);
@@ -327,6 +338,8 @@
   });
 
   // --- Init ---
+  els.muteBtn.textContent = state.muted ? '🔇' : '🔊';
+  els.muteBtn.title = state.muted ? 'Unmute chime' : 'Mute chime';
   setMode(state.mode, false);
   render();
   if (state.running) start();
