@@ -180,6 +180,11 @@ body {
   color: #10121a;
   padding: 12px 32px;
   font-size: 15px;
+  box-shadow: 0 4px 14px rgba(124, 158, 255, 0.35);
+}
+
+.control-btn.primary:hover {
+  box-shadow: 0 6px 18px rgba(124, 158, 255, 0.45);
 }
 
 .control-btn.secondary {
