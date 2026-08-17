@@ -51,6 +51,7 @@
     clearDoneBtn: document.getElementById('clearDoneBtn'),
     muteBtn: document.getElementById('muteBtn'),
     charCounter: document.getElementById('charCounter'),
+    announcer: document.getElementById('announcer'),
   };
 
   els.ring.style.strokeDasharray = String(RING_CIRCUMFERENCE);
@@ -153,6 +154,7 @@
   function completeSession() {
     pause();
     playChime();
+    els.announcer.textContent = `${MODES[state.mode].label} session complete.`;
     if (state.mode === 'focus') {
       recordDailyCompletion();
       if (state.activeTaskId) {
