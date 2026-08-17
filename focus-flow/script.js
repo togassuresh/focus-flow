@@ -46,6 +46,7 @@
     taskList: document.getElementById('taskList'),
     taskCount: document.getElementById('taskCount'),
     emptyState: document.getElementById('emptyState'),
+    dailyStat: document.getElementById('dailyStat'),
   };
 
   els.ring.style.strokeDasharray = String(RING_CIRCUMFERENCE);
@@ -98,6 +99,11 @@
     els.ring.style.strokeDashoffset = String(RING_CIRCUMFERENCE * (1 - progress));
     els.startPauseBtn.textContent = state.running ? 'Pause' : 'Start';
     document.title = `${formatTime(state.secondsLeft)} · ${MODES[state.mode].label} · Focus Flow`;
+    if (state.dailyDate !== todayKey()) {
+      state.dailyDate = todayKey();
+      state.dailyCount = 0;
+    }
+    els.dailyStat.textContent = `${state.dailyCount} session${state.dailyCount === 1 ? '' : 's'} today`;
     renderTasks();
   }
 
