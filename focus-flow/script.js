@@ -102,7 +102,11 @@
   function setMode(mode, resetTime = true) {
     state.mode = mode;
     if (resetTime) state.secondsLeft = totalSecondsForMode(mode);
-    els.modeBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.mode === mode));
+    els.modeBtns.forEach(btn => {
+      const isActive = btn.dataset.mode === mode;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', String(isActive));
+    });
     const colorVar = MODES[mode].color;
     els.ring.style.stroke = getComputedStyle(document.documentElement).getPropertyValue(colorVar).trim();
     document.title = `${formatTime(state.secondsLeft)} · ${MODES[mode].label} · Focus Flow`;
