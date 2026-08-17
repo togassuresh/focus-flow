@@ -236,7 +236,7 @@
   function renderTasks() {
     els.taskList.innerHTML = '';
     const doneCount = state.tasks.filter(t => t.done).length;
-    els.taskCount.textContent = `${doneCount} done`;
+    els.taskCount.textContent = `${doneCount}/${state.tasks.length} done`;
     els.emptyState.classList.toggle('hidden', state.tasks.length > 0);
 
     state.tasks.forEach(t => {
