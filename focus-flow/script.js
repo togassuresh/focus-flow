@@ -17,10 +17,18 @@
     dailyDate: todayKey(),
     dailyCount: 0,
     muted: false,
+    streak: 0,
+    lastStreakDate: null,
   });
 
   function todayKey() {
     const d = new Date();
+    return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+  }
+
+  function yesterdayKey() {
+    const d = new Date();
+    d.setDate(d.getDate() - 1);
     return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
   }
 
@@ -30,6 +38,11 @@
       state.dailyCount = 0;
     }
     state.dailyCount += 1;
+
+    if (state.lastStreakDate !== todayKey()) {
+      state.streak = state.lastStreakDate === yesterdayKey() ? state.streak + 1 : 1;
+      state.lastStreakDate = todayKey();
+    }
   }
 
   let tickHandle = null;
