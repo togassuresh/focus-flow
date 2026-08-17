@@ -109,7 +109,8 @@
       state.dailyDate = todayKey();
       state.dailyCount = 0;
     }
-    els.dailyStat.textContent = `${state.dailyCount} session${state.dailyCount === 1 ? '' : 's'} today`;
+    const minutes = state.dailyCount * MODES.focus.minutes;
+    els.dailyStat.textContent = `${state.dailyCount} session${state.dailyCount === 1 ? '' : 's'} today · ${minutes} min`;
     renderTasks();
   }
 
