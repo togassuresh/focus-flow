@@ -465,3 +465,12 @@ body {
   .ring { width: 240px; height: 240px; }
   .time-display { font-size: 42px; }
 }
+
+@media (max-width: 360px) {
+  body { padding: 20px 10px; }
+  .ring-wrap { width: 200px; height: 200px; }
+  .ring { width: 200px; height: 200px; }
+  .time-display { font-size: 34px; }
+  .controls { flex-wrap: wrap; justify-content: center; }
+  .control-btn.primary { padding: 12px 24px; }
+}
