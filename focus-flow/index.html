@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Focus Flow</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>Focus Flow</h1>
+      <div class="mode-switch">
+        <button class="mode-btn active" data-mode="focus">Focus</button>
+        <button class="mode-btn" data-mode="short">Short Break</button>
+        <button class="mode-btn" data-mode="long">Long Break</button>
+      </div>
+    </header>
+
+    <main class="timer-section">
+      <div class="ring-wrap">
+        <svg class="ring" width="280" height="280" viewBox="0 0 280 280">
+          <circle class="ring-bg" cx="140" cy="140" r="120"></circle>
+          <circle class="ring-progress" cx="140" cy="140" r="120"></circle>
+        </svg>
+        <div class="ring-center">
+          <div class="time-display" id="timeDisplay">25:00</div>
+          <div class="session-label" id="sessionLabel">Session 1</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="control-btn secondary" id="resetBtn" title="Reset (R)">Reset</button>
+        <button class="control-btn primary" id="startPauseBtn" title="Start/Pause (Space)">Start</button>
+        <button class="control-btn secondary" id="skipBtn" title="Skip (S)">Skip</button>
+      </div>
+
+      <p class="hint">Space: start/pause &middot; R: reset &middot; S: skip &middot; N: new task</p>
+    </main>
+
+    <section class="tasks-section">
+      <div class="tasks-header">
+        <h2>Tasks</h2>
+        <span class="task-count" id="taskCount">0 done</span>
+      </div>
+      <form id="taskForm" class="task-form">
+        <input type="text" id="taskInput" placeholder="Add a task and press Enter..." autocomplete="off" maxlength="120">
+        <button type="submit" class="task-add-btn" aria-label="Add task">Add</button>
+      </form>
+      <ul class="task-list" id="taskList"></ul>
+      <p class="empty-state" id="emptyState">No tasks yet. Add one to get started, or press N.</p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
