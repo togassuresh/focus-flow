@@ -123,7 +123,8 @@
       state.dailyCount = 0;
     }
     const minutes = state.dailyCount * MODES.focus.minutes;
-    els.dailyStat.textContent = `${state.dailyCount} session${state.dailyCount === 1 ? '' : 's'} today · ${minutes} min`;
+    const streakText = state.streak > 1 ? ` · 🔥 ${state.streak} day streak` : '';
+    els.dailyStat.textContent = `${state.dailyCount} session${state.dailyCount === 1 ? '' : 's'} today · ${minutes} min${streakText}`;
     renderTasks();
   }
 
