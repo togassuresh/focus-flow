@@ -338,6 +338,13 @@
       del.addEventListener('click', () => deleteTask(t.id));
 
       li.append(checkbox, text, pomoCount, del);
+
+      if (t.id === state.activeTaskId) {
+        const badge = document.createElement('span');
+        badge.className = 'active-badge';
+        badge.textContent = 'Active';
+        text.insertAdjacentElement('afterend', badge);
+      }
       els.taskList.appendChild(li);
     });
   }
