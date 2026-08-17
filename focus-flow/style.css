@@ -479,6 +479,12 @@ body {
   .time-display { font-size: 42px; }
 }
 
+@media print {
+  .controls, .mode-switch, .task-form, .clear-done-btn, .reset-all-btn, .hint {
+    display: none;
+  }
+}
+
 @media (max-width: 360px) {
   body { padding: 20px 10px; }
   .ring-wrap { width: 200px; height: 200px; }
