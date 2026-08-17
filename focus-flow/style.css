@@ -460,6 +460,19 @@ body {
 
 .empty-state.hidden { display: none; }
 
+.reset-all-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 8px;
+  align-self: center;
+  transition: color 0.2s;
+}
+
+.reset-all-btn:hover { color: var(--danger); }
+
 @media (max-width: 480px) {
   .ring-wrap { width: 240px; height: 240px; }
   .ring { width: 240px; height: 240px; }

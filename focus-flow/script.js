@@ -52,6 +52,7 @@
     muteBtn: document.getElementById('muteBtn'),
     charCounter: document.getElementById('charCounter'),
     announcer: document.getElementById('announcer'),
+    resetAllBtn: document.getElementById('resetAllBtn'),
   };
 
   els.ring.style.strokeDasharray = String(RING_CIRCUMFERENCE);
@@ -336,6 +337,12 @@
 
   els.clearDoneBtn.addEventListener('click', clearCompleted);
   els.muteBtn.addEventListener('click', toggleMute);
+  els.resetAllBtn.addEventListener('click', () => {
+    if (confirm('Reset all data? This clears tasks, stats, and timer settings.')) {
+      localStorage.removeItem('focusFlowState');
+      location.reload();
+    }
+  });
   els.startPauseBtn.addEventListener('click', toggleStartPause);
   els.resetBtn.addEventListener('click', reset);
   els.skipBtn.addEventListener('click', skip);
