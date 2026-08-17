@@ -47,6 +47,7 @@
     taskCount: document.getElementById('taskCount'),
     emptyState: document.getElementById('emptyState'),
     dailyStat: document.getElementById('dailyStat'),
+    clearDoneBtn: document.getElementById('clearDoneBtn'),
   };
 
   els.ring.style.strokeDasharray = String(RING_CIRCUMFERENCE);
@@ -217,6 +218,15 @@
     renderTasks();
   }
 
+  function clearCompleted() {
+    if (state.activeTaskId && state.tasks.find(t => t.id === state.activeTaskId)?.done) {
+      state.activeTaskId = null;
+    }
+    state.tasks = state.tasks.filter(t => !t.done);
+    save();
+    renderTasks();
+  }
+
   function setActiveTask(id) {
     state.activeTaskId = state.activeTaskId === id ? null : id;
     save();
@@ -269,6 +279,7 @@
     });
   });
 
+  els.clearDoneBtn.addEventListener('click', clearCompleted);
   els.startPauseBtn.addEventListener('click', toggleStartPause);
   els.resetBtn.addEventListener('click', reset);
   els.skipBtn.addEventListener('click', skip);

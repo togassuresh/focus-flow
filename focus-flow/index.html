@@ -45,7 +45,10 @@
     <section class="tasks-section">
       <div class="tasks-header">
         <h2>Tasks</h2>
-        <span class="task-count" id="taskCount">0 done</span>
+        <div class="tasks-header-right">
+          <span class="task-count" id="taskCount">0 done</span>
+          <button type="button" class="clear-done-btn" id="clearDoneBtn">Clear completed</button>
+        </div>
       </div>
       <form id="taskForm" class="task-form">
         <input type="text" id="taskInput" placeholder="Add a task and press Enter..." autocomplete="off" maxlength="120">

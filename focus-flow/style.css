@@ -211,9 +211,31 @@ body {
   font-weight: 700;
 }
 
+.tasks-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .task-count {
   font-size: 12px;
   color: var(--text-dim);
+}
+
+.clear-done-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.clear-done-btn:hover {
+  color: var(--text);
+  background: var(--panel-2);
 }
 
 .task-form {
