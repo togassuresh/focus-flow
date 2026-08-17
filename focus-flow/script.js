@@ -233,6 +233,39 @@
     renderTasks();
   }
 
+  function renameTask(id, newText) {
+    const trimmed = newText.trim();
+    if (!trimmed) return;
+    const t = state.tasks.find(t => t.id === id);
+    if (!t) return;
+    t.text = trimmed;
+    save();
+  }
+
+  function startRename(id, textEl) {
+    const t = state.tasks.find(t => t.id === id);
+    if (!t) return;
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'task-edit-input';
+    input.value = t.text;
+    input.maxLength = 120;
+    textEl.replaceWith(input);
+    input.focus();
+    input.select();
+
+    let cancelled = false;
+    const commit = () => {
+      if (!cancelled) renameTask(id, input.value);
+      renderTasks();
+    };
+    input.addEventListener('blur', commit);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); input.blur(); }
+      if (e.key === 'Escape') { e.preventDefault(); cancelled = true; input.blur(); }
+    });
+  }
+
   function clearCompleted() {
     if (state.activeTaskId && state.tasks.find(t => t.id === state.activeTaskId)?.done) {
       state.activeTaskId = null;
@@ -267,8 +300,12 @@
       const text = document.createElement('span');
       text.className = 'task-text';
       text.textContent = t.text;
-      text.title = 'Click to set as active task for timer';
+      text.title = 'Click to set as active task · double-click to rename';
       text.addEventListener('click', () => setActiveTask(t.id));
+      text.addEventListener('dblclick', (e) => {
+        e.stopPropagation();
+        startRename(t.id, text);
+      });
 
       const pomoCount = document.createElement('span');
       pomoCount.className = 'task-pomo-count';
